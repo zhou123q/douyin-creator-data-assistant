@@ -17,6 +17,9 @@ from urllib.parse import urlparse
 
 ROOT = Path(sys.executable).resolve().parent if getattr(sys, "frozen", False) else Path(__file__).resolve().parent
 CONFIG_PATH = ROOT / "config.json"
+CONFIG_EXAMPLE_PATH = Path(getattr(sys, "_MEIPASS", ROOT)) / "config.example.json"
+if not CONFIG_PATH.exists() and CONFIG_EXAMPLE_PATH.is_file():
+    shutil.copyfile(CONFIG_EXAMPLE_PATH, CONFIG_PATH)
 CONFIG = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
 
 import requests

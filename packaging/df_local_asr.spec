@@ -1,16 +1,19 @@
 # -*- mode: python ; coding: utf-8 -*-
 
+from pathlib import Path
+
+ROOT = Path(SPECPATH).resolve().parent
 
 a = Analysis(
-    ['..\\local_asr\\run.py'],
-    pathex=[],
+    [str(ROOT / 'local_asr' / 'run.py')],
+    pathex=[str(ROOT / 'local_asr')],
     binaries=[],
-    datas=[],
-    hiddenimports=['uvicorn.logging', 'uvicorn.loops.auto', 'uvicorn.protocols.http.auto', 'uvicorn.protocols.websockets.auto', 'uvicorn.lifespan.on'],
+    datas=[(str(ROOT / 'local_asr' / 'config.example.json'), '.')],
+    hiddenimports=['fsspec', 'fsspec.callbacks', 'fsspec.config', 'fsspec.utils', 'uvicorn.logging', 'uvicorn.loops.auto', 'uvicorn.protocols.http.auto', 'uvicorn.protocols.websockets.auto', 'uvicorn.lifespan.on'],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
-    excludes=['torch', 'pandas', 'scipy', 'matplotlib', 'IPython', 'pytest', 'jupyter', 'notebook', 'PIL', 'pygame', 'tensorflow', 'keras', 'imageio', 'soundfile', 'fsspec', 'librosa', 'sklearn', 'cv2'],
+    excludes=['torch', 'pandas', 'scipy', 'matplotlib', 'IPython', 'pytest', 'jupyter', 'notebook', 'PIL', 'pygame', 'tensorflow', 'keras', 'imageio', 'soundfile', 'librosa', 'sklearn', 'cv2'],
     noarchive=False,
     optimize=0,
 )
