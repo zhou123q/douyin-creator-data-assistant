@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { width: 350px; padding: 16px; color: #1f2937; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    h3 { font-size: 16px; margin-bottom: 12px; }
+    .badge { margin-left: 6px; padding: 3px 8px; border-radius: 999px; font-size: 10px; background: #dcfce7; color: #166534; }
+    .card { padding: 13px; margin: 10px 0; border: 1px solid #e5e7eb; border-radius: 10px; background: #f9fafb; }
+    .row { display: flex; justify-content: space-between; gap: 12px; margin: 7px 0; font-size: 12px; }
+    .label { color: #6b7280; }
+    .value { max-width: 220px; text-align: right; word-break: break-all; }
+    .ok { color: #16a34a; }
+    .err { color: #dc2626; }
+    .hint { color: #6b7280; font-size: 11px; line-height: 1.55; margin-top: 8px; }
+    input { width: 100%; padding: 8px; margin-top: 7px; border: 1px solid #d1d5db; border-radius: 7px; font-size: 12px; }
+    button { width: 100%; padding: 9px 14px; margin-top: 8px; border: 0; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600; }
+    button:disabled { opacity: .55; cursor: default; }
+    .primary { color: #fff; background: #fe2c55; }
+    .secondary { color: #fff; background: #2563eb; }
+  </style>
+</head>
+<body>
+  <h3>df对标拆解助手 <span class="badge">免费开源版</span></h3>
+  <button class="primary" id="btnBenchmark">分析当前主页</button>
+  <button class="secondary" id="btnMyAccount">分析我的账号</button>
+  <button class="secondary" id="btnMonitor">关注博主更新</button>
+  <p class="hint" id="entryHint">对标分析读取当前博主公开数据；我的账号会进入已登录账号主页并补充播放数据。</p>
+
+  <div class="card">
+    <div class="row"><span class="label">本地转写服务</span><span class="value" id="serviceStatus">检测中…</span></div>
+    <div class="row"><span class="label">转写模型</span><span class="value" id="modelStatus">—</span></div>
+    <div class="row"><span class="label">模型目录</span><span class="value" id="modelDir">—</span></div>
+    <button class="secondary" id="btnRefresh">重新检测</button>
+    <p class="hint" id="serviceHint">使用转文字前，请手动双击 local_asr 文件夹中的 start_local_asr.bat，并保持窗口打开。用完后可以直接关闭该窗口。</p>
+  </div>
+  <div class="card">
+    <div style="font-size:13px;font-weight:700;">自己的大模型（OpenAI 兼容）</div>
+    <input id="aiBaseUrl" placeholder="API 地址，例如 https://api.deepseek.com/v1">
+    <input id="aiModel" placeholder="模型名称，例如 deepseek-chat">
+    <input id="aiApiKey" type="password" placeholder="API Key（留空则保留已保存的 Key）">
+    <button class="secondary" id="btnSaveAI">保存并测试</button>
+    <p class="hint" id="aiStatus">未配置时，AI 文案拆解和评论痛点分析不可用；其他基础功能不受影响。</p>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

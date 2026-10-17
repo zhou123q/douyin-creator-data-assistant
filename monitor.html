@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>关注博主更新 · DF</title><link rel="stylesheet" href="monitor.css"></head>
+<body>
+<header><div><strong>DF</strong><h1>关注博主更新</h1><span id="owner">未同步账号</span></div><div class="commands"><label><input type="checkbox" id="autoTranscribe" checked>自动转写</label><button id="start" class="primary">采集最新作品</button><button id="retry">继续转写</button><button id="stop" hidden>停止</button></div></header>
+<div class="layout">
+<aside><div class="aside-heading"><h2>采集博主</h2><button id="sync">同步我的关注</button></div>
+<input type="search" id="authorSearch" placeholder="搜索博主" aria-label="搜索博主">
+<div class="selection"><button id="selectAll">全选筛选结果</button><button id="selectNone">取消选择</button><span id="selectedCount">0 位</span></div>
+<div id="coverage" class="coverage">尚未同步关注列表</div><div id="authors"></div>
+<form id="addForm"><label for="authorUrl">添加博主主页</label><div><input id="authorUrl" type="url" placeholder="https://www.douyin.com/user/…" required><button type="submit">添加</button></div></form>
+</aside>
+<main><section class="progress"><span id="runStatus">等待采集</span><span id="service">本地伴侣检测中</span></section>
+<div id="message" role="status" hidden></div>
+<section class="metrics"><div><span>已保存作品</span><strong id="total">0</strong></div><div><span>口播稿完成</span><strong id="done">0</strong></div><div><span>待处理</span><strong id="pending">0</strong></div><div><span>失败</span><strong id="failed">0</strong></div></section>
+<section class="filters"><input type="search" id="workSearch" placeholder="搜索作品或文稿" aria-label="搜索作品"><select id="authorFilter" aria-label="筛选博主"><option value="">全部博主</option></select><select id="statusFilter" aria-label="筛选转写状态"><option value="">全部状态</option><option value="pending">待转写</option><option value="transcribing">转写中</option><option value="done">已完成</option><option value="failed">失败</option><option value="no_speech">无人声</option><option value="image">图文</option></select><span class="export"><button data-export="csv">CSV</button><button data-export="json">JSON</button><button data-export="txt">TXT</button><button id="clear">清理结果</button></span></section>
+<section class="results"><table><thead><tr><th>作品 / 博主</th><th>发布时间</th><th>点赞</th><th>评论</th><th>收藏</th><th>分享</th><th>口播稿</th></tr></thead><tbody id="works"></tbody></table><div id="empty"><h2>还没有采集结果</h2><p>选择博主后开始采集</p></div></section>
+</main></div>
+<dialog id="detail"><div class="detail-heading"><h2 id="detailTitle"></h2><button id="closeDetail" aria-label="关闭详情">×</button></div><p id="detailMeta"></p><div class="detail-actions"><a id="videoLink" target="_blank" rel="noopener">打开原作品</a><button id="copyText">复制文稿</button></div><p id="detailError"></p><pre id="transcript"></pre></dialog>
+<script src="modules/monitor_core.js"></script><script src="monitor.js"></script>
+</body></html>

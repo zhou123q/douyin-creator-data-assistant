@@ -1,0 +1,36 @@
+# Local configuration and credentials
+.env
+.env.*
+local_asr/config.json
+
+# Python environments and generated files
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Whisper models and user data
+models/
+**/models/
+outputs/
+downloads/
+*.mp4
+*.wav
+*.m4a
+
+# Build outputs and portable Windows distributions
+build/
+dist/
+.pyinstaller*/
+DF对标拆解助手_*/
+dcxzs_local_asr_portable/
+
+# Local editor / agent configuration
+.agents/
+.codex/
+.idea/
+.vscode/
+
+# Preview captures
+tests/*.png
+*.log

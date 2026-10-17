@@ -1,0 +1,16 @@
+{
+  "host": "127.0.0.1",
+  "port": 8765,
+  "model_dir": "./models/faster-whisper-medium",
+  "device": "cpu",
+  "compute_type": "int8",
+  "language": "zh",
+  "max_download_mb": 1024,
+  "expected_model_bytes": 1530575439,
+  "model_repo": "Systran/faster-whisper-medium",
+  "hf_endpoint": "https://huggingface.co",
+  "ai_base_url": "https://api.deepseek.com/v1",
+  "ai_model": "deepseek-chat",
+  "ai_api_key": "",
+  "ai_temperature": 0.7
+}

@@ -1,0 +1,69 @@
+{
+  "manifest_version": 3,
+  "name": "df对标拆解助手",
+  "version": "1.10.3",
+  "minimum_chrome_version": "116",
+  "description": "分析抖音对标账号与自己账号的作品数据，支持播放量、互动率、评论、导出、视频转文字和 AI 拆解。",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "df对标拆解助手",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://www.douyin.com/user/*"],
+      "js": ["monitor_entry.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://www.douyin.com/user/*"
+      ],
+      "js": [
+        "modules/douyin_page_api.js",
+        "modules/self_analytics.js",
+        "libs/tailwind.js",
+        "libs/fflate.js",
+        "libs/chart.js",
+        "modules/dy_comment_module.js",
+        "inject.js"
+      ],
+      "run_at": "document_idle",
+      "world": "MAIN"
+    }
+  ],
+  "host_permissions": [
+    "*://www.douyin.com/*",
+    "http://127.0.0.1:8765/*"
+  ],
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "tabs",
+    "storage",
+    "offscreen"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "modules/douyin_page_api.js",
+        "modules/self_analytics.js",
+        "libs/tailwind.js",
+        "libs/fflate.js",
+        "libs/chart.js",
+        "modules/dy_comment_module.js",
+        "inject.js"
+      ],
+      "matches": [
+        "*://www.douyin.com/*"
+      ]
+    }
+  ]
+}
