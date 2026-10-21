@@ -558,6 +558,12 @@ async def transcribe(body: TranscribeRequest):
     except requests.RequestException as exc:
         log.exception("视频下载失败")
         raise HTTPException(502, f"视频下载失败: {exc}") from exc
+    except ModuleNotFoundError as exc:
+        log.exception("本地转写依赖缺失")
+        raise HTTPException(
+            503,
+            f"本地转写组件缺失: {exc.name}。请安装或重新下载完整的 Windows 伴侣包，然后重启本地伴侣。",
+        ) from exc
     except Exception as exc:
         log.exception("本地转写失败")
         raise HTTPException(500, f"本地转写失败: {exc}") from exc

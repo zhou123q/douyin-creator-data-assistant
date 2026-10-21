@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "df对标拆解助手",
-  "version": "1.10.3",
+  "version": "1.10.4",
   "minimum_chrome_version": "116",
   "description": "分析抖音对标账号与自己账号的作品数据，支持播放量、互动率、评论、导出、视频转文字和 AI 拆解。",
   "icons": {

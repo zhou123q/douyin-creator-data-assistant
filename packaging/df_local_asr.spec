@@ -1,6 +1,7 @@
 # -*- mode: python ; coding: utf-8 -*-
 
 from pathlib import Path
+from PyInstaller.utils.hooks import collect_submodules
 
 ROOT = Path(SPECPATH).resolve().parent
 
@@ -9,7 +10,11 @@ a = Analysis(
     pathex=[str(ROOT / 'local_asr')],
     binaries=[],
     datas=[(str(ROOT / 'local_asr' / 'config.example.json'), '.')],
-    hiddenimports=['fsspec', 'fsspec.callbacks', 'fsspec.config', 'fsspec.utils', 'uvicorn.logging', 'uvicorn.loops.auto', 'uvicorn.protocols.http.auto', 'uvicorn.protocols.websockets.auto', 'uvicorn.lifespan.on'],
+    hiddenimports=collect_submodules('faster_whisper') + [
+        'ctranslate2', 'fsspec', 'fsspec.callbacks', 'fsspec.config', 'fsspec.utils',
+        'uvicorn.logging', 'uvicorn.loops.auto', 'uvicorn.protocols.http.auto',
+        'uvicorn.protocols.websockets.auto', 'uvicorn.lifespan.on',
+    ],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
